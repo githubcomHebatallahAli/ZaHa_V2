@@ -14,7 +14,16 @@ class PortfolioUserController extends Controller
         $Portfolios = Portfolio::where('status', 'active')
         ->get();
         return response()->json([
-            'data' => PortfolioResource::collection($Portfolios),
+            'data' => $Portfolios->map(function ($Portfolio) {
+                return [
+                    'id' => $Portfolio->id,
+                    'name' => $Portfolio->name,
+                    'description' => $Portfolio->description,
+                    'mainImage' => $Portfolio->mainImage,
+                    'projectType' => $Portfolio->projectType,
+                    'endDate' => $Portfolio->endDate,
+                ];
+            }),
             'message' => "Show All Portfolios Successfully."
         ]);
     }
