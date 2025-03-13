@@ -20,6 +20,7 @@ return new class extends Migration
             $table->json('images')->nullable();
             $table->string('videoUrl')->nullable();
             $table->string('url')->nullable();
+            $table->string('projectType')->nullable();
             $table->timestamp('startDate')->nullable();
             $table->timestamp('endDate')->nullable();
             $table->enum('status', ['active', 'notActive'])->default('active');

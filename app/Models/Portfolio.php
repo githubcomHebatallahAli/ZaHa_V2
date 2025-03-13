@@ -21,7 +21,8 @@ class Portfolio extends Model
         'url',
         'startDate',
         'endDate',
-        'status'
+        'status',
+        'projectType'
 
     ];
 
