@@ -38,6 +38,7 @@ class PortfolioController extends Controller
             "startDate" => $request->startDate,
             "endDate" => $request->endDate,
             "url" => $request->url,
+            "projectType" => $request-> projectType,
             "videoUrl" => $request->videoUrl,
             "status" => 'active',
         ]);
@@ -106,6 +107,7 @@ class PortfolioController extends Controller
             "startDate" => $request->startDate,
             "endDate" => $request->endDate,
             "url" => $request->url,
+            "projectType" => $request-> projectType,
             "videoUrl" => $request->videoUrl,
             "status" => $request-> status,
         ]);

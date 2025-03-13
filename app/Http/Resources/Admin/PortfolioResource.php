@@ -23,6 +23,7 @@ class PortfolioResource extends JsonResource
             'images' => $this -> images,
             'videoUrl' => $this -> videoUrl,
             'url' => $this -> url,
+            'projectType' => $this -> projectType,
             'startDate' => $this -> startDate,
             'endDate' => $this -> endDate,
             'status' => $this -> status,

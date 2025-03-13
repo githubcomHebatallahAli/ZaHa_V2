@@ -26,6 +26,7 @@ class PortfolioRequest extends FormRequest
         return [
              'name'=>'required|string',
              'description'=>'required|string',
+             'projectType'=>'nullable|string',
              'programLang' => 'required|array',
             'programLang.*' => 'string',
              'url'=>'required|string',
