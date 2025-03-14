@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Contact;
 use App\Mail\NewContactMail;
 use App\Mail\ContactWelcomeMail;
@@ -23,12 +24,13 @@ class ContactUserController extends Controller
             'message' => $request->message,
             ]);
 
-            // $admins = User::where('isAdmin', 1)->get();
-            // foreach ($admins as $admin) {
-            //     $admin->notify(new NewContactNotification($contact));
-            //     Mail::to($admin->email)->send(new NewContactMail($contact));
-            // }
-            // Mail::to($contact->user->email)->send(new ContactWelcomeMail($contact));
+            $admin = Admin::where('role_id', 1)->first(); // استبدال User بـ Admin
+
+            // إرسال إشعار للمسؤول باستخدام guard المخصص للمسؤولين
+            if ($admin) {
+                // تأكد من تحديد guard الصحيح عند إرسال الإشعار
+                $admin->notify(new NewContactNotification($contact));
+            }
 
            $contact->save();
            return response()->json([
