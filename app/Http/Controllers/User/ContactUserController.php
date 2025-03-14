@@ -24,11 +24,9 @@ class ContactUserController extends Controller
             'message' => $request->message,
             ]);
 
-            $admin = Admin::where('role_id', 1)->first(); // استبدال User بـ Admin
+            $admin = Admin::where('role_id', 1)->first(); 
 
-            // إرسال إشعار للمسؤول باستخدام guard المخصص للمسؤولين
             if ($admin) {
-                // تأكد من تحديد guard الصحيح عند إرسال الإشعار
                 $admin->notify(new NewContactNotification($contact));
             }
 

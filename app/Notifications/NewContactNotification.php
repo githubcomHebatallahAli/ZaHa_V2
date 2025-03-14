@@ -29,12 +29,24 @@ class NewContactNotification extends Notification
     public function toDatabase(object $notifiable): array
     {
         return [
+            // 'contact_id' => $this->contact->id,
+            // 'phoneNumber' => $this->contact->phoneNumber,
+            // 'message' => $this->contact->message,
             'contact_id' => $this->contact->id,
+            'name' => 'تم إرسال رسالة جديدة من ' . $this->contact->name,
             'phoneNumber' => $this->contact->phoneNumber,
             'message' => $this->contact->message,
-            'user_id' => $this->contact->user_id,
+            'created_at' => now(),
 
         ];
+    }
+
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)
+                    ->subject('رسالة جديدة من المستخدم')
+                    ->line('تم إرسال رسالة جديدة من ' . $this->contact->name)
+                    ->line('الرسالة: ' . $this->contact->message);
     }
 
 
