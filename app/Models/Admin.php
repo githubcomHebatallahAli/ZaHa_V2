@@ -37,6 +37,10 @@ class Admin  extends Authenticatable  implements JWTSubject
         'password'=>'hashed'
     ];
 
+    protected $attributes = [
+        'status' => 'active', // تعيين القيمة الافتراضية في الموديل
+    ];
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
