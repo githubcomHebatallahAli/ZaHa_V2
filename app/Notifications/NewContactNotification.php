@@ -29,9 +29,6 @@ class NewContactNotification extends Notification
     public function toDatabase(object $notifiable): array
     {
         return [
-            // 'contact_id' => $this->contact->id,
-            // 'phoneNumber' => $this->contact->phoneNumber,
-            // 'message' => $this->contact->message,
             'contact_id' => $this->contact->id,
             'name' => 'تم إرسال رسالة جديدة من ' . $this->contact->name,
             'phoneNumber' => $this->contact->phoneNumber,

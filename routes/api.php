@@ -1,8 +1,20 @@
 <?php
 
-use TusPhp\Tus\Client;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TestBunnyController;
+use Illuminate\Support\Facades\Mail;
+
+
+Route::get('/test-email', function () {
+    Mail::send([], [], function($message) {
+        $message->to('ziad07138@gmail.com')
+                ->subject('Test Email')
+                ->setBody('This is a test email', 'text/html');
+    });
+
+    return 'Test email sent!';
+});
+
 
 
 
