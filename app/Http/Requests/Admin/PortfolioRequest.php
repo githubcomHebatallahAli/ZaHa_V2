@@ -33,8 +33,8 @@ class PortfolioRequest extends FormRequest
              'mainImage' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg',
              'images.*' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg',
              'videoUrl' => 'nullable|string',
-             'startDate'=> 'nullable|date_format:Y-m-d H:i:s',
-             'endDate'=> 'nullable|date_format:Y-m-d H:i:s',
+             'startDate'=> 'nullable|date_format:Y-m-d',
+             'endDate'=> 'nullable|date_format:Y-m-d',
              'status'=> 'nullable|in:active,notActive',
         ];
     }

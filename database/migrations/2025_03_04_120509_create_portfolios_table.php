@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('videoUrl')->nullable();
             $table->string('url')->nullable();
             $table->string('projectType')->nullable();
-            $table->timestamp('startDate')->nullable();
-            $table->timestamp('endDate')->nullable();
+            $table->date('startDate')->nullable();
+            $table->date('endDate')->nullable();
             $table->enum('status', ['active', 'notActive'])->default('active');
             $table->softDeletes();
             $table->timestamps();
