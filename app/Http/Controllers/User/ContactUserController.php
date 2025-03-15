@@ -24,17 +24,11 @@ class ContactUserController extends Controller
             'message' => $request->message,
             ]);
 
-            // $admin = Admin::where('role_id', 1)->first();
+            $admin = Admin::where('role_id', 1)->first();
 
-            // if ($admin) {
-            //     $admin->notify(new NewContactNotification($contact));
-            // }
-
-            Mail::send([], [], function($message) use ($contact) {
-                $message->to('ziad07138@gmail.com')
-                        ->subject('رسالة جديدة من المستخدم')
-                        ->setBody('<p>تم إرسال رسالة جديدة من ' . $contact->name . '</p>', 'text/html'); // رسالة HTML
-            });
+            if ($admin) {
+                $admin->notify(new NewContactNotification($contact));
+            }
 
            $contact->save();
            return response()->json([
