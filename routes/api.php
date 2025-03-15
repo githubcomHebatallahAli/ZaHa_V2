@@ -3,13 +3,14 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
+use Symfony\Component\Mime\Part\TextPart;
 
 
 Route::get('/test-email', function () {
     Mail::send([], [], function($message) {
         $message->to('ziad07138@gmail.com')
                 ->subject('Test Email')
-                ->setBody('This is a test email', 'text/html');
+                ->setBody(new TextPart('This is a test email', 'text/html'));
     });
 
     return 'Test email sent!';
