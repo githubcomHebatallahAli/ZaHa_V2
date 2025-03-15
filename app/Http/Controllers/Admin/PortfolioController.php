@@ -27,6 +27,7 @@ class PortfolioController extends Controller
                     'mainImage' => $Portfolio->mainImage,
                     'projectType' => $Portfolio->projectType,
                     'endDate' => $Portfolio->endDate,
+                    'status' => $Portfolio->status,
                 ];
             }),
             'message' => "Show All Portfolios Successfully."
