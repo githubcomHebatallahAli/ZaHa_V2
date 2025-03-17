@@ -28,10 +28,11 @@ class PortfolioUserController extends Controller
         ]);
     }
 
-    public function edit(string $id)
+    public function edit(string $slug)
     {
         $Portfolio = Portfolio::where('status', 'active')
-        ->find($id);
+        ->where('slug', $slug)
+        ->first();
 
         if (!$Portfolio) {
             return response()->json([

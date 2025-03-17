@@ -35,14 +35,13 @@ class PortfolioController extends Controller
     }
 
 
-
-
     public function create(PortfolioRequest $request)
     {
         $this->authorize('manage_users');
 
         $Portfolio = Portfolio::create([
             "name" => $request->name,
+            // "slug" => $request->slug,
             "description" => $request->description,
             "programLang" => $request-> programLang,
             "startDate" => $request->startDate,
@@ -52,6 +51,10 @@ class PortfolioController extends Controller
             "videoUrl" => $request->videoUrl,
             "status" => 'active',
         ]);
+
+        $slug = $this->generateSlug($Portfolio->name, $Portfolio->id);
+        $Portfolio->slug = $slug;
+        
         if ($request->hasFile('mainImage')) {
             $mainImagePath = $request->file('mainImage')->store(Portfolio::storageFolder);
             $Portfolio->mainImage =  $mainImagePath;
@@ -178,14 +181,14 @@ class PortfolioController extends Controller
      if ($request->filled('name')) {
         $Portfolio->name = $request->name;
     }
+
      if ($request->filled('description')) {
         $Portfolio->description = $request->description;
     }
+
      if ($request->filled('programLang')) {
         $Portfolio->programLang = $request->programLang;
     }
-
-
 
      if ($request->filled('url')) {
         $Portfolio->url = $request->url;
