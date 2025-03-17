@@ -85,10 +85,8 @@ class PortfolioController extends Controller
 
     private function generateSlug($name, $id)
     {
-        // استبدال المسافات بـ "-" وتحويل النص إلى lowercase
         $slug = strtolower(str_replace(' ', '-', $name));
 
-        // إضافة الـ id إلى الـ slug
         $slug = $slug . '-' . $id;
 
         return $slug;
@@ -221,6 +219,9 @@ class PortfolioController extends Controller
      if ($request->filled('status')) {
         $Portfolio->status = $request->status;
     }
+
+    $slug = $this->generateSlug($Portfolio->name, $Portfolio->id);
+    $Portfolio->slug = $slug;
 
             if ($request->hasFile('mainImage')) {
             if ($Portfolio->mainImage) {
