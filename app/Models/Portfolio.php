@@ -33,14 +33,5 @@ class Portfolio extends Model
     ];
 
 
-    private function generateSlug($name, $id)
-{
-    // استبدال المسافات بـ "-" وتحويل النص إلى lowercase
-    $slug = strtolower(str_replace(' ', '-', $name));
 
-    // إضافة الـ id إلى الـ slug
-    $slug = $slug . '-' . $id;
-
-    return $slug;
-}
 }

@@ -54,7 +54,7 @@ class PortfolioController extends Controller
 
         $slug = $this->generateSlug($Portfolio->name, $Portfolio->id);
         $Portfolio->slug = $slug;
-        
+
         if ($request->hasFile('mainImage')) {
             $mainImagePath = $request->file('mainImage')->store(Portfolio::storageFolder);
             $Portfolio->mainImage =  $mainImagePath;
@@ -81,6 +81,17 @@ class PortfolioController extends Controller
             'data' => new PortfolioResource($Portfolio),
             'message' => "Portfolio Created Successfully."
         ]);
+    }
+
+    private function generateSlug($name, $id)
+    {
+        // استبدال المسافات بـ "-" وتحويل النص إلى lowercase
+        $slug = strtolower(str_replace(' ', '-', $name));
+
+        // إضافة الـ id إلى الـ slug
+        $slug = $slug . '-' . $id;
+
+        return $slug;
     }
 
 
