@@ -17,6 +17,7 @@ class PortfolioUserController extends Controller
             'data' => $Portfolios->map(function ($Portfolio) {
                 return [
                     'id' => $Portfolio->id,
+                    'slug' => $Portfolio->slug,
                     'name' => $Portfolio->name,
                     'description' => $Portfolio->description,
                     'mainImage' => $Portfolio->mainImage,
