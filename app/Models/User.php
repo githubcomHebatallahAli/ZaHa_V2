@@ -22,69 +22,17 @@ class User extends Authenticatable  implements JWTSubject
         'name',
         'email',
         'password',
-        // 'email_verified_at',
-        // 'social_id',
-        // 'social_type',
+        'state',
+        'governorate',
+        'address',
+        'userJob',
+        'information',
+        'projPrice',
     ];
 
 
 
-    // protected $guarded= ['isAdmin'];
 
-    // const ISADMIN =[
-    //     0 => 'User',
-    //     1 => 'Admin'
-    // ];
-
-
-    // public function admin()
-    // {
-    //     return $this->hasOne(Admin::class);
-    // }
-
-    // public function team()
-    // {
-    //     return $this->hasOne(Team::class);
-    // }
-    // public function job()
-    // {
-    //     return $this->hasOne(Job::class);
-    // }
-
-
-    function orders(){
-
-        return $this->hasMany(Order::class);
-    }
-
-
-    // function comments(){
-
-    //     return $this->hasMany(Comment::class);
-    // }
-
-
-    public function contactUs()
-    {
-        return $this->hasMany(Contact::class);
-    }
-
-    // public function projects()
-    // {
-    //     return $this->belongsToMany(User::class,'user_projects')
-    //     ->withPivot('price','numberOfSales');
-
-    // }
-
-    // public function roles()
-    // {
-    //     return $this->belongsToMany(Role::class,'user_roles');
-    // }
-
-    // public function permissions()
-    // {
-    //     return $this->belongsToMany(Permission::class,'user_permissions');
-    // }
 
     /**
      * The attributes that should be hidden for serialization.
