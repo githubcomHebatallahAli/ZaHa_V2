@@ -18,6 +18,8 @@ class OrderUserController extends Controller
            $order =Order::create ([
             'name'=> $request->name,
             'phoneNumber' => $request->phoneNumber,
+            'creationDate' => now()->timezone('Africa/Cairo')->format('Y-m-d H:i:s'),
+            'status' => 'pending',
             ]);
 
             // $admins = User::where('isAdmin', 1)->get();

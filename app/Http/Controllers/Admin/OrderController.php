@@ -78,6 +78,45 @@ public function showAll()
         return $this->forceDeleteModel(Order::class, $id);
     }
 
+    public function pending(string $id)
+    {
+        $Order =Order::findOrFail($id);
+
+        if (!$Order) {
+         return response()->json([
+             'message' => "Order not found."
+         ]);
+     }
+
+     $this->authorize('pending',$Order);
+        $Order->update(['status' => 'pending']);
+
+        return response()->json([
+            'data' => new OrderResource($Order),
+            'message' => 'Order has been Pending.'
+        ]);
+    }
+
+      public function replied(string $id)
+    {
+      $this->authorize('manage_users');
+        $Order =Order::findOrFail($id);
+
+        if (!$Order) {
+         return response()->json([
+             'message' => "Order not found."
+         ]);
+     }
+     $this->authorize('replied',$Order);
+
+        $Order->update(['status' => 'replied']);
+
+        return response()->json([
+            'data' => new OrderResource($Order),
+            'message' => 'Order has been Replied.'
+        ]);
+    }
+
 }
 
 
