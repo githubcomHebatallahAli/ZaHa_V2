@@ -24,13 +24,11 @@ class ContactUserController extends Controller
             'message' => $request->message,
             ]);
 
-            $admin = Admin::where('role_id', 1)->first();
-
-            if ($admin) {
-                $admin->notify(new NewContactNotification($contact));
-            }
-
            $contact->save();
+           $superAdmin = Admin::where('role_id', 1)->where('status', 'active')->first();
+           if ($superAdmin) {
+               $superAdmin->notify(new NewContactNotification($contact));
+
            return response()->json([
             'data' =>new ContactResource($contact),
             'message' => "Contact Created Successfully."
@@ -38,4 +36,5 @@ class ContactUserController extends Controller
         }
 
 
+}
 }

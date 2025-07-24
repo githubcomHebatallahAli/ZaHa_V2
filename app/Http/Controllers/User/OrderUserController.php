@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\User;
 
 
-use App\Models\Order;
 use App\Http\Controllers\Controller;
-
 use App\Http\Requests\Mix\OrderRequest;
+
 use App\Http\Resources\Mix\OrderResource;
+use App\Models\Admin;
+use App\Models\Order;
+use App\Notifications\NewOrderNotification;
 
 
 class OrderUserController extends Controller
@@ -22,13 +24,12 @@ class OrderUserController extends Controller
             'status' => 'pending',
             ]);
 
-            // $admins = User::where('isAdmin', 1)->get();
-            // foreach ($admins as $admin) {
-            //     $admin->notify(new NewOrderNotification($order));
-            //     Mail::to($admin->email)->send(new NewOrderMail($order));
-            // }
-            //     Mail::to($order->user->email)->send(new OrderWelcomeMail($order));
            $order->save();
+           $superAdmin = Admin::where('role_id', 1)->where('status', 'active')->first();
+           if ($superAdmin) {
+               $superAdmin->notify(new NewOrderNotification($order));
+
+
            return response()->json([
             'data' =>new OrderResource($order),
             'message' => "Order Created Successfully."
@@ -38,3 +39,4 @@ class OrderUserController extends Controller
 
     }
 
+}

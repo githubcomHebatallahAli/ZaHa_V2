@@ -27,15 +27,17 @@ class NewOrderNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     public function toDatabase(object $notifiable): array
     {
         return [
             'order_id' => $this->order->id,
+            'name' => 'تم إرسال رسالة جديدة من ' . $this->order->name,
             'phoneNumber' => $this->order->phoneNumber,
-            'user_id' => $this->order->user_id,
+            'created_at' => now(),
+
 
         ];
     }
