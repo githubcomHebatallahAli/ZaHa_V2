@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phoneNumber');
+            $table->enum('status', ['pending', 'replied'])->default('pending');
+            $table->timestamp('creationDate')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

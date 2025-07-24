@@ -13,6 +13,8 @@ class Order extends Model
     protected $fillable = [
         'phoneNumber',
         'name',
+        'status',
+        'creationDate',
     ];
 
 

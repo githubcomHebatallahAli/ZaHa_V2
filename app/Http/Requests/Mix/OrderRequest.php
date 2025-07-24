@@ -26,6 +26,8 @@ class OrderRequest extends FormRequest
         return [
             'name'=> 'required|string',
             'phoneNumber' => 'required|string',
+            'status' => 'nullable|in:pending,replied',
+            'creationDate' => 'nullable|date_format:Y-m-d H:i:s',
 
         ];
     }
