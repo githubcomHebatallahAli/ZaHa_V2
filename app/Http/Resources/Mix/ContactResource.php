@@ -19,6 +19,7 @@ class ContactResource extends JsonResource
             'name' => $this->name,
             'phoneNumber' => $this->phoneNumber,
             'message'=> $this ->message,
+            'creationDate' => $this->creationDate,
 
         ];
 

@@ -6,9 +6,9 @@ use App\Models\User;
 use App\Models\Admin;
 use App\Models\Contact;
 use App\Mail\NewContactMail;
-use App\Mail\ContactWelcomeMail;
+
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
+
 use App\Http\Requests\Mix\ContactRequest;
 use App\Http\Resources\Mix\ContactResource;
 use App\Notifications\NewContactNotification;
@@ -22,6 +22,7 @@ class ContactUserController extends Controller
             'name'=> $request->name,
             'phoneNumber' => $request->phoneNumber,
             'message' => $request->message,
+            'creationDate' => $request->creationDate,
             ]);
 
            $contact->save();
@@ -34,7 +35,5 @@ class ContactUserController extends Controller
             'message' => "Contact Created Successfully."
         ]);
         }
-
-
 }
 }

@@ -13,13 +13,9 @@ class Contact extends Model
         'name',
         'phoneNumber',
         'message',
-        // 'user_id'
+        'creationDate'
     ];
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
 
 
 }

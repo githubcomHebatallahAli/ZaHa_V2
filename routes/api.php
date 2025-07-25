@@ -26,6 +26,7 @@ require __DIR__ . '/Apis/Admin/order.php';
 require __DIR__ . '/Apis/Admin/portfolio.php';
 require __DIR__ . '/Apis/Admin/user.php';
 require __DIR__ . '/Apis/Admin/notification.php';
+require __DIR__ . '/Apis/Admin/client.php';
 require __DIR__ . '/Apis/User/contact.php';
 require __DIR__ . '/Apis/User/order.php';
 require __DIR__ . '/Apis/User/portfolio.php';

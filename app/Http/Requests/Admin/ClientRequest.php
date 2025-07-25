@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Mix;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class ContactRequest extends FormRequest
+class ClientRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,12 @@ class ContactRequest extends FormRequest
     {
         return [
             'name' => 'required|string|between:2,100',
-            'phoneNumber' =>'required|string',
-            'message'=>'required|string',
+            'phone' => 'required|string',
+            'address' => 'nullable|string',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'clientOpinion' => 'nullable|string',
+            'zahaOpinion' => 'nullable|string',
+            'notes' => 'nullable|string',
             'creationDate' => 'nullable|date_format:Y-m-d H:i:s',
         ];
     }
