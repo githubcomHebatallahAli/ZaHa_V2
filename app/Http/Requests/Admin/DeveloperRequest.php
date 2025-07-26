@@ -32,6 +32,8 @@ class DeveloperRequest extends FormRequest
         'notes' => 'nullable|string',
         'creationDate' => 'nullable|date_format:Y-m-d H:i:s',
         'job' => 'nullable|string',
+        'status'=>'nullable|in:active,notActive',
+        'salary'=>'nullable|numeric'
         ];
     }
 

@@ -18,15 +18,13 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('photo')->nullable();
             $table->enum('job', ['ui','front', 'flutter','back','sales']);
-            $table->enum('status', ['active','notActive '])->default('active');
+            $table->enum('status', ['active','notActive'])->default('active');
             $table->decimal('salary')->default(0);
             $table->date('joiningDate')->nullable();
             $table->text('zahaOpinion')->nullable();
             $table->text('notes')->nullable();
             $table->timestamp('creationDate')->nullable();
             $table->softDeletes();
-
-
             $table->timestamps();
         });
     }

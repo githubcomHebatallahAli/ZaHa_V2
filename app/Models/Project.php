@@ -24,6 +24,7 @@ class Project extends Model
         'reason',
         'amount',
         'creationDate',
+        'status'
     ];
 
     public function client()

@@ -21,6 +21,7 @@ class ProjectResource extends JsonResource
             'client' => new ClientResource($this->whenLoaded('client')),
             'cost' => $this->cost,
             'projectType' => $this->projectType,
+            'status' => $this->status,
             'startDate' => $this->startDate,
             'endDate' => $this->endDate,
             'hostName' => $this->hostName,

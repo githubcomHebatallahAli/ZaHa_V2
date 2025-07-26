@@ -24,6 +24,8 @@ class DeveloperResource extends JsonResource
         'notes' => $this->notes,
         'creationDate' => $this->creationDate,
         'job' => $this->job,
+        'status' => $this->status,
+        'salary' => $this->salary
         ];
     }
 }

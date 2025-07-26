@@ -40,6 +40,7 @@ class ProjectRequest extends FormRequest
             'renewalDomainDate' => 'nullable|date_format:Y-m-d|after_or_equal:buyDomainDate',
             'reason' => 'nullable|string',
             'amount' => 'nullable|numeric',
+            'status'=>'nullable|in:pending,completed,canceled,inProgress,rejected',
             'creationDate' => 'nullable|date_format:Y-m-d H:i:s',
             'developers' => 'nullable|array',
             'developers.*.id' => 'nullable_with:developers|exists:developers,id',

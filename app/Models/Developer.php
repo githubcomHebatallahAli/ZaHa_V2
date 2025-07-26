@@ -15,6 +15,9 @@ class Developer extends Model
         'notes',
         'creationDate',
         'job',
+        'status',
+        'salary'
+
     ];
 
     public function projects()
