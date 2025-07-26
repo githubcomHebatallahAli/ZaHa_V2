@@ -34,6 +34,16 @@ class ProjectResource extends JsonResource
             'reason' => $this->reason,
             'amount' => $this->amount,
             'creationDate' => $this->creationDate,
+        'developers' => $this->whenLoaded('developers', function () {
+            return $this->developers->map(function ($developer) {
+                return [
+                    'id' => $developer->id,
+                    'name' => $developer->name,
+                    'profit' => $developer->pivot->profit,
+                ];
+            });
+        }),
         ];
     }
+
 }

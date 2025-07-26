@@ -41,6 +41,9 @@ class ProjectRequest extends FormRequest
             'reason' => 'nullable|string',
             'amount' => 'nullable|numeric',
             'creationDate' => 'nullable|date_format:Y-m-d H:i:s',
+            'developers' => 'nullable|array',
+            'developers.*.id' => 'required_with:developers|exists:developers,id',
+            'developers.*.profit' => 'required_with:developers|numeric',  
         ];
     }
 

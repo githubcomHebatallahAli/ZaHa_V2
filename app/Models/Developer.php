@@ -16,4 +16,9 @@ class Developer extends Model
         'creationDate',
         'job',
     ];
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'project_developers')->withPivot('profit');
+    }
 }

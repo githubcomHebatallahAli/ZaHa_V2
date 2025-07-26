@@ -30,4 +30,9 @@ class Project extends Model
     {
         return $this->belongsTo(Client::class);
     }
+
+    public function developers()
+    {
+        return $this->belongsToMany(Developer::class, 'project_developers')->withPivot('profit');
+    }
 }

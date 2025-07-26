@@ -13,14 +13,9 @@ return new class extends Migration
     {
         Schema::create('project_developers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('phone');
-            $table->string('address')->nullable();
-            $table->string('photo')->nullable();
-            $table->text('zahaOpinion')->nullable();
-            $table->text('notes')->nullable();
-            $table->timestamp('creationDate')->nullable();
-            $table->softDeletes();
+            $table->foreignId('project_id')->constrained('projects')->cascadeOnDelete();
+            $table->foreignId('developer_id')->constrained('developers')->cascadeOnDelete();
+            $table->decimal('profit');
             $table->timestamps();
         });
     }
