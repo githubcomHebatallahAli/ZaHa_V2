@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete();
             $table->decimal('cost')->nullable();
             $table->enum('projectType', ['web', 'flutter','webAndFlutter','other']);
+            $table->enum('status', ['pending', 'rejected','completed','canceled','inProgress'])->default('pending');
             $table->date('startDate')->nullable();
             $table->date('endDate')->nullable();
             $table->string('hostName')->nullable();
