@@ -40,7 +40,7 @@ class ProjectController extends Controller
             'renewalDomainDate' => $request->renewalDomainDate,
             'reason' => $request->reason,
             'amount' => $request->amount,
-            'creationDate' => $request->creationDate ?? now()->timezone('Africa/Cairo')->format('Y-m-d H:i:s'),
+            'creationDate' =>now()->timezone('Africa/Cairo')->format('Y-m-d H:i:s'),
         ]);
         $project->load('client');
         return response()->json([

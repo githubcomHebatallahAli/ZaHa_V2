@@ -64,7 +64,7 @@ class ProjectDeveloperController extends Controller
     /**
      * Display the specified project with its developers.
      */
-    public function show($id): JsonResponse
+    public function edit($id): JsonResponse
     {
         $project = Project::with('developers')->findOrFail($id);
 
@@ -73,8 +73,5 @@ class ProjectDeveloperController extends Controller
             'data' => new ProjectResource($project)
         ]);
     }
-
-
-
 
 }
