@@ -40,6 +40,9 @@ class DeveloperController extends Controller
             'DeveloperOpinion' => $request->DeveloperOpinion,
             'zahaOpinion' => $request->zahaOpinion,
             'notes' => $request->notes,
+            'status' => 'active',
+            'salaray' => $request->salary,
+            'joiningDate' => $request->joiningDate,
             'creationDate' => now()->timezone('Africa/Cairo')->format('Y-m-d H:i:s'),
         ]);
         if ($request->hasFile('photo')) {
@@ -95,9 +98,20 @@ class DeveloperController extends Controller
         if ($request->filled('notes')) {
             $Developer->notes = $request->notes;
         }
+        if ($request->filled('salary')) {
+            $Developer->salary = $request->salary;
+        }
+        if ($request->filled('joiningDate')) {
+            $Developer->joiningDate = $request->joiningDate;
+        }
+        if ($request->filled('status')) {
+            $Developer->status = $request->status;
+        }
+
         if ($request->filled('creationDate')) {
             $Developer->creationDate = $request->creationDate;
         }
+
         if ($request->hasFile('photo')) {
             if ($Developer->photo) {
                 Storage::disk('public')->delete($Developer->photo);
@@ -105,6 +119,7 @@ class DeveloperController extends Controller
             $photoPath = $request->file('photo')->store('Developer', 'public');
             $Developer->photo = $photoPath;
         }
+        
         $Developer->save();
         return response()->json([
             'data' => new DeveloperResource($Developer),

@@ -40,6 +40,7 @@ class ProjectController extends Controller
             'renewalDomainDate' => $request->renewalDomainDate,
             'reason' => $request->reason,
             'amount' => $request->amount,
+            'status' => 'pending',
             'creationDate' =>now()->timezone('Africa/Cairo')->format('Y-m-d H:i:s'),
         ]);
         $project->load('client');
@@ -121,6 +122,10 @@ class ProjectController extends Controller
         if ($request->filled('amount')) {
             $project->amount = $request->amount;
         }
+        if ($request->filled('status')) {
+            $project->status = $request->status;
+        }
+        
         if ($request->filled('creationDate')) {
             $project->creationDate = $request->creationDate;
         }
