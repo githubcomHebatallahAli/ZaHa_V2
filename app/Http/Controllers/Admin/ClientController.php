@@ -30,6 +30,38 @@ class ClientController extends Controller
         ]);
     }
 
+public function showAllWithPaginate(Request $request)
+{
+    $this->authorize('manage_users');
+
+    $searchTerm = $request->input('search', '');
+
+    $clients = Client::where('name', 'like', '%' . $searchTerm . '%')
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+
+    return response()->json([
+        'data' => $clients->map(function ($client) {
+            return [
+                'id' => $client->id,
+                'name' => $client->name,
+                'address' => $client->address,
+            ];
+        }),
+        'pagination' => [
+            'total' => $clients->total(),
+            'count' => $clients->count(),
+            'per_page' => $clients->perPage(),
+            'current_page' => $clients->currentPage(),
+            'total_pages' => $clients->lastPage(),
+            'next_page_url' => $clients->nextPageUrl(),
+            'prev_page_url' => $clients->previousPageUrl(),
+        ],
+        'message' => "Show All Clients."
+    ]);
+}
+
+
     public function create(ClientRequest $request)
     {
         $this->authorize('manage_users');
