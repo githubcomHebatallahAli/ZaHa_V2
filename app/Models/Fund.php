@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Fund extends Model
 {
     use HasFactory, SoftDeletes;
+
     protected $fillable = [
         'funder',
         'amount',
@@ -18,7 +19,7 @@ class Fund extends Model
 
     protected $casts = [
         'amount' => 'decimal:2',
-        
+   
     ];
 
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->enum('job', ['ui','front', 'flutter','back','sales']);
             $table->enum('status', ['active','notActive'])->default('active');
-            $table->decimal('salary')->default(0);
+            $table->decimal('salary', 10, 2)->default(0);
             $table->date('joiningDate')->nullable();
             $table->text('zahaOpinion')->nullable();
             $table->text('notes')->nullable();

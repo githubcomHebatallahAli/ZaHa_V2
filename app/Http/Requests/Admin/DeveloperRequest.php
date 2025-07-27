@@ -33,7 +33,7 @@ class DeveloperRequest extends FormRequest
         'creationDate' => 'nullable|date_format:Y-m-d H:i:s',
         'job' => 'nullable|string',
         'status'=>'nullable|in:active,notActive',
-        'salary'=>'nullable|numeric',
+        'salary'=>'nullable|numeric|min:0|max:99999.99',
         'joiningDate' => 'nullable|date_format:Y-m-d',
         ];
     }

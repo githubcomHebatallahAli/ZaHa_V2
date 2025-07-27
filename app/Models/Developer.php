@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Developer extends Model
 {
+    use HasFactory, SoftDeletes;
+    const storageFolder = 'Developer';
     protected $fillable = [
         'name',
         'phone',
@@ -24,4 +28,8 @@ class Developer extends Model
     {
         return $this->belongsToMany(Project::class, 'project_developers')->withPivot('profit');
     }
+
+    protected $casts = [
+        'salary' => 'decimal:2',
+    ];
 }
