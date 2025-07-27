@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class FundRequest extends FormRequest
 {
@@ -27,5 +29,13 @@ class FundRequest extends FormRequest
             'notes' => 'nullable|string',
             'creationDate' => 'nullable|date_format:Y-m-d H:i:s',
         ];
+    }
+        public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
+        ]));
     }
 }
