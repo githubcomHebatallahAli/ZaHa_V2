@@ -16,4 +16,6 @@ Route::controller(DeveloperController::class)->prefix('/admin')->middleware('adm
    Route::get('/showDeleted/developer', 'showDeleted');
 Route::get('/restore/developer/{id}','restore');
 Route::delete('/forceDelete/developer/{id}','forceDelete');
+Route::patch('/active/developer/{id}', 'active');
+   Route::patch('/notActive/developer/{id}', 'notActive');
    });

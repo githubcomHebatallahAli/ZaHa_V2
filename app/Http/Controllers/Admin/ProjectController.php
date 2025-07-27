@@ -125,7 +125,7 @@ class ProjectController extends Controller
         if ($request->filled('status')) {
             $project->status = $request->status;
         }
-        
+
         if ($request->filled('creationDate')) {
             $project->creationDate = $request->creationDate;
         }
@@ -173,4 +173,99 @@ class ProjectController extends Controller
     {
         return $this->forceDeleteModel(Project::class, $id);
     }
+
+        public function pending(string $id)
+    {
+         $this->authorize('manage_users');
+        $Project =Project::findOrFail($id);
+
+        if (!$Project) {
+         return response()->json([
+             'message' => "Project not found."
+         ]);
+     }
+
+     $this->authorize('pending',$Project);
+
+        return response()->json([
+            'data' => new ProjectResource($Project),
+            'message' => 'Project has been Pending.'
+        ]);
+    }
+
+        public function completed(string $id)
+    {
+         $this->authorize('manage_users');
+        $Project =Project::findOrFail($id);
+
+        if (!$Project) {
+         return response()->json([
+             'message' => "Project not found."
+         ]);
+     }
+
+        $Project->update(['status' => 'completed']);
+
+        return response()->json([
+            'data' => new ProjectResource($Project),
+            'message' => 'Project has been Completed.'
+        ]);
+    }
+
+        public function rejected(string $id)
+    {
+         $this->authorize('manage_users');
+        $Project =Project::findOrFail($id);
+
+        if (!$Project) {
+         return response()->json([
+             'message' => "Project not found."
+         ]);
+     }
+        $Project->update(['status' => 'rejected']);
+
+        return response()->json([
+            'data' => new ProjectResource($Project),
+            'message' => 'Project has been Rejected.'
+        ]);
+    }
+
+        public function canceled(string $id)
+    {
+         $this->authorize('manage_users');
+        $Project =Project::findOrFail($id);
+
+        if (!$Project) {
+         return response()->json([
+             'message' => "Project not found."
+         ]);
+     }
+
+        $Project->update(['status' => 'canceled']);
+
+        return response()->json([
+            'data' => new ProjectResource($Project),
+            'message' => 'Project has been Canceled.'
+        ]);
+    }
+
+        public function inProgress(string $id)
+    {
+         $this->authorize('manage_users');
+        $Project =Project::findOrFail($id);
+
+        if (!$Project) {
+         return response()->json([
+             'message' => "Project not found."
+         ]);
+     }
+
+        $Project->update(['status' => 'inProgress']);
+
+        return response()->json([
+            'data' => new ProjectResource($Project),
+            'message' => 'Project has been inProgress.'
+        ]);
+    }
+
 }
